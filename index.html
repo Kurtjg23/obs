@@ -27,6 +27,15 @@
   document.getElementById('go').href = target;
   document.getElementById('name').textContent = file ? 'Opening ' + file.split('/').pop() + ' in Obsidian...' : 'Opening the vault in Obsidian...';
   location.href = target;
+
+  // Close this tab once Obsidian has taken focus, or after 3 seconds.
+  // Browsers allow a script to close a tab that opened fresh from another app (one history entry).
+  // If the browser refuses, the tab simply stays open with the message above.
+  var closed = false;
+  function shut() { if (closed) return; closed = true; setTimeout(function () { window.close(); }, 400); }
+  window.addEventListener('blur', shut);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) shut(); });
+  setTimeout(shut, 3000);
 </script>
 </body>
 </html>
