@@ -23,7 +23,7 @@
   // Example: .../obs/#99%20System%2FNudges  or  #TASKS
   var VAULT = "KG's Vault 28082026 - Obsidian Sync";
   var file = decodeURIComponent((location.hash || '').replace(/^#/, ''));
-  var target = 'obsidian://open?vault=' + encodeURIComponent(VAULT) + (file ? '&file=' + encodeURIComponent(file) : '');
+  var target = 'obsidian://open?vault=' + encodeURIComponent(VAULT) + (file ? '&file=' + encodeURIComponent(file) + '&paneType=tab&newleaf=true' : '');  // open in a new Obsidian tab
   document.getElementById('go').href = target;
   document.getElementById('name').textContent = file ? 'Opening ' + file.split('/').pop() + ' in Obsidian...' : 'Opening the vault in Obsidian...';
   location.href = target;
